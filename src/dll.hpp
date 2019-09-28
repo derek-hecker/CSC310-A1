@@ -82,6 +82,16 @@ void DLL<T>::prepend(T &data)
 template <class T>
 void DLL<T>::append(T &data)
 {
+    Node<T> &new_node = new Node<T>(data);
+    if (head == null)
+    {
+        head = new_node;
+        tail = new_node;
+    }else {
+        tail->set_next(new_node);
+        new_node->set_prev = tail;
+        tail = new_node;
+    }
     return;
 }
 
