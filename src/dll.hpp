@@ -173,6 +173,44 @@ void DLL<T>::print()
 template <class T>
 bool DLL<T>::remove(T target)
 {
+    Node<T> *itr;
+    Node<T> *toDelete;
+
+    if (head == NULL)
+    {
+        return false;
+    }
+
+    itr = head;
+    while (itr != NULL)
+    {
+        if (itr->get_data() == target)
+        {
+            break;
+        }
+        itr = itr->get_next();
+    }
+    if (itr == NULL){
+        return false; 
+    }
+    if (itr == head)
+    {
+        return removeFront();
+    }
+    else if (itr == tail)
+    {
+        return removeBack();
+    }
+    else
+    {
+        toDelete = itr;
+        itr = itr->get_prev();
+        itr->set_next(toDelete->get_next());
+        itr = toDelete->get_next();
+        itr->set_prev(toDelete->get_prev());
+        delete(toDelete);
+        return true;
+    }
     return false;
 }
 
