@@ -68,6 +68,7 @@ template <class T>
 void DLL<T>::prepend(T &data)
 {
     Node<T> *new_node = new Node<T>(data);
+    //Checks if list is empty
     if (head == NULL)
     {
         head = new_node;
@@ -102,13 +103,51 @@ void DLL<T>::append(T &data)
 template <class T>
 bool DLL<T>::removeFront()
 {
-    return false;
+    Node<T> *itr;
+    if (head == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        itr = head;
+        head = head->get_next();
+        if (head == NULL)
+        {
+            tail = NULL;
+        }
+        else
+        {
+            head->set_prev(NULL);
+        }
+        delete (itr);
+    }
+    return true;
 }
 
 template <class T>
 bool DLL<T>::removeBack()
 {
-    return false;
+    Node<T> *itr;
+    if (head == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        itr = tail;
+        tail = tail->get_prev();
+        delete (itr);
+        if (tail == NULL)
+        {
+            head = NULL;
+        }
+        else
+        {
+            tail->set_next(NULL);
+        }
+    }
+    return true;
 }
 
 template <class T>
