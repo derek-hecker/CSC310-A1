@@ -67,12 +67,14 @@ DLL<T>::DLL()
 template <class T>
 void DLL<T>::prepend(T &data)
 {
-    Node<T> &new_node = new Node<T>(data);
-    if (head == null)
+    Node<T> *new_node = new Node<T>(data);
+    if (head == NULL)
     {
         head = new_node;
         tail = new_node;
-    }else {
+    }
+    else
+    {
         new_node->set_next(head);
         head = new_node;
     }
@@ -82,14 +84,16 @@ void DLL<T>::prepend(T &data)
 template <class T>
 void DLL<T>::append(T &data)
 {
-    Node<T> &new_node = new Node<T>(data);
-    if (head == null)
+    Node<T> *new_node = new Node<T>(data);
+    if (head == NULL)
     {
         head = new_node;
         tail = new_node;
-    }else {
+    }
+    else
+    {
         tail->set_next(new_node);
-        new_node->set_prev = tail;
+        new_node->set_prev(tail);
         tail = new_node;
     }
     return;
@@ -136,11 +140,25 @@ bool DLL<T>::remove(T target)
 template <class T>
 T DLL<T>::getFront(void)
 {
-    return 0;
+    if (head == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return head->get_data();
+    }
 }
 
 template <class T>
 T DLL<T>::getBack(void)
 {
-    return 0;
+    if (tail == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return tail->get_data();
+    }
 }
