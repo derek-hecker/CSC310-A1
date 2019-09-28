@@ -153,7 +153,17 @@ bool DLL<T>::removeBack()
 template <class T>
 Node<T> *DLL<T>::search(T target)
 {
-    return NULL;
+    Node<T> *itr;
+    itr = head;
+    while (itr != NULL)
+    {
+        if (itr->get_data() == target)
+        {
+            break;
+        }
+        itr = itr->get_next();
+    }
+    return itr;
 }
 
 template <class T>
